@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: head (titulo='Nueva tarea')"></head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 d-flex justify-content-end align-items-end ">
+            <li class="nav-item active">
+                <a class="nav-link" href="/about">TodoList <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/usuarios/{idLogeado}/tareas(idLogeado=${usuario.id})}" >Tareas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/registrados">Registrados</a>
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${usuario.nombre}" />
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Cuenta</a>
+                    <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+
+    <h2 th:text="'Nueva tarea para el usuario ' + ${usuario.getNombre()}"></h2>
+
+    <form method="post" th:action="@{/usuarios/{id}/tareas/nueva(id=${usuario.id})}" th:object="${tareaData}">
+        <div class="col-6">
+        <div class="form-group">
+            <label for="titulo">Título de la tarea:</label>
+            <input class="form-control" id="titulo" name="titulo" required th:field="*{titulo}" type="text"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Crear tarea</button>
+        <a class="btn btn-link" th:href="@{/usuarios/{id}/tareas(id=${usuario.id})}">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+<div th:replace="fragments::javascript"/>
+
+</body>
+</html>
