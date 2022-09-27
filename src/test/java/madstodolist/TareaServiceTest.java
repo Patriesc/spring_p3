@@ -62,7 +62,7 @@ public class TareaServiceTest {
         // al recuperar el usuario usando el método findByEmail la tarea creada
         // está en la lista de tareas del usuario.
 
-        Usuario usuario = usuarioService.findByEmail("user@ua");
+        Usuario usuario = usuarioService.findByEmail("user@ua!!");
         assertThat(usuario.getTareas()).hasSize(3);
         assertThat(usuario.getTareas()).contains(tarea);
     }
