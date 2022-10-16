@@ -33,9 +33,11 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
     Set<Tarea> tareas = new HashSet<>();
 
+
     // Constructor vacío necesario para JPA/Hibernate.
     // No debe usarse desde la aplicación.
-    public Usuario() {}
+    public Usuario() {
+    }
 
     // Constructor público con los atributos obligatorios. En este caso el correo electrónico.
     public Usuario(String email) {
@@ -89,6 +91,9 @@ public class Usuario implements Serializable {
     public void setTareas(Set<Tarea> tareas) {
         this.tareas = tareas;
     }
+
+
+
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,19 @@
 # Aplicación ToDoList con base de datos PostgreSQL
 
+Para poder ejecutar la aplicación:
+
+```bash
+docker run -d -p 5432:5432 --name postgres-develop -e POSTGRES_USER=mads -e POSTGRES_PASSWORD=mads -e POSTGRES_DB=mads 
+postgres:13
+```
+Una vez que el contenedor funciona correctamente, ejecutamos la aplicación de Spring con:
+
+```bash 
+./mvnw spring-boot:run -D profiles=postgres
+```
+
+## Github Actions
+
 En esta aplicación, en primer lugar teníamos que configurar Github Actions, para comprobar que los tests pasen correctamente cada vez que se realiza Pull Request.
 
 Primero he probado con un test incorrecto:
